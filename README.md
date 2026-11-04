@@ -18,6 +18,8 @@ GH_TOKEN=$(gh auth token) node server.js
 # then open http://localhost:3000
 ```
 
+On Railway, add a `GH_TOKEN` (or `GITHUB_TOKEN`) environment variable with a GitHub token to raise the Search API rate limit from 10 to 30 requests/minute. Without it the scanner still works — it paces requests to stay under the unauthenticated limit.
+
 No dependencies — plain Node.js (18+) and vanilla HTML/CSS/JS.
 
 ## How it works

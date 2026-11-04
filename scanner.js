@@ -148,6 +148,16 @@ const CATEGORIES = [
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// Pace outbound Search API calls so we stay under the rate limit even
+// without a token (10 req/min unauthenticated, 30 req/min with token).
+const MIN_INTERVAL_MS = TOKEN ? 2200 : 6500;
+let lastRequestAt = 0;
+async function pace() {
+  const wait = lastRequestAt + MIN_INTERVAL_MS - Date.now();
+  if (wait > 0) await sleep(wait);
+  lastRequestAt = Date.now();
+}
+
 function apiHeaders() {
   const headers = {
     Accept: 'application/vnd.github+json',
