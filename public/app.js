@@ -64,10 +64,12 @@
 
   function renderScanStatus(meta, scanning) {
     lastScannedAt = meta.scannedAt;
-    pulseDot.classList.toggle('scanning', !!scanning);
-    scanText.textContent = scanning
-      ? 'Scanning GitHub…'
-      : `Last scan ${timeAgo(meta.scannedAt)} · ${meta.total} repos tracked`;
+    pulseDot.classList.toggle('scanning', !!scanning || !meta.scannedAt);
+    scanText.textContent = !meta.scannedAt
+      ? 'First scan in progress…'
+      : scanning
+        ? 'Scanning GitHub…'
+        : `Last scan ${timeAgo(meta.scannedAt)} · ${meta.total} repos tracked`;
   }
 
   function repoCard(r) {
