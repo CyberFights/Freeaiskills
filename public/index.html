@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI Skills — Live GitHub Radar for AI Tools &amp; Skills</title>
+  <meta name="description" content="Continuously scans GitHub for the latest and most popular free AI skills, agents, MCP servers and tools — organized by category with live search." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-logo">🤖</span>
+        <div>
+          <h1>Free AI Skills</h1>
+          <p class="tagline">Live radar scanning GitHub for free AI skills, agents &amp; tools</p>
+        </div>
+      </div>
+      <div class="scan-status" id="scanStatus">
+        <span class="pulse-dot" id="pulseDot"></span>
+        <span id="scanText">Scanning GitHub…</span>
+        <button id="refreshBtn" class="refresh-btn" title="Scan GitHub now">⟳ Rescan</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="controls">
+    <div class="search-wrap">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="Search by name, description or topic — e.g. “mcp”, “rag”, “voice”…"
+        autocomplete="off"
+      />
+    </div>
+    <div class="sort-wrap">
+      <label for="sortSelect">Sort</label>
+      <select id="sortSelect">
+        <option value="stars">⭐ Most popular</option>
+        <option value="updated">🕒 Recently updated</option>
+        <option value="name">🔤 Name A–Z</option>
+      </select>
+    </div>
+  </section>
+
+  <nav class="categories" id="categoryBar" aria-label="Categories"></nav>
+
+  <main>
+    <div class="results-meta" id="resultsMeta"></div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="emptyState" hidden>
+      <p>🛰️ No repositories match — try another search or category.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Data comes from the <a href="https://docs.github.com/en/rest/search/search#search-repositories" target="_blank" rel="noopener">GitHub Search API</a>,
+      re-scanned automatically every 15 minutes. All repos listed are public and free on GitHub.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
