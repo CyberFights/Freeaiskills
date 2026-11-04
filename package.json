@@ -1,0 +1,14 @@
+{
+  "name": "freeaiskills",
+  "version": "1.0.0",
+  "description": "Website that continuously scans GitHub for the latest and most popular free AI skills and tools, organized by category with live search.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "scan": "node scanner.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

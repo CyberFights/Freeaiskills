@@ -1,0 +1,9 @@
+# Force Railway to run the Node server (not a static Caddy deployment),
+# so the /api/* JSON endpoints are served alongside the static UI.
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "node server.js"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
